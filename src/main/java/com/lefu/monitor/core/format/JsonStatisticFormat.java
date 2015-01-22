@@ -2,6 +2,7 @@ package com.lefu.monitor.core.format;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -37,7 +38,7 @@ public class JsonStatisticFormat implements StatisticFormat {
 			g.writeEndObject();
 			g.writeEndObject();
 			g.close();
-			return new String(out.toByteArray());
+			return new String(out.toByteArray(), Charset.forName("UTF-8"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +68,7 @@ public class JsonStatisticFormat implements StatisticFormat {
 			}
 			g.writeEndArray();
 			g.close();
-			return new String(out.toByteArray());
+			return new String(out.toByteArray(), Charset.forName("UTF-8"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
