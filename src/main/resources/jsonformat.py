@@ -23,7 +23,9 @@ def readOutput(host, port):
 	return data
 
 def parseData(jsonData, metric, key):
-	data = json.loads(jsonData)
+	metric = unicode(metric, 'UTF-8')
+	key = unicode(key, 'UTF-8')
+	data = json.JSONDecoder('UTF-8').decode(jsonData)
 	for x in data:
 		if not 'name' in x:
 			continue
@@ -46,11 +48,11 @@ if __name__ == '__main__':
 		if jsonData is None:
 			print 'Read JSON data error'
 		else:
-			l = []			
+			l = []
 			for x in sys.argv[3:]:
 				args = x.split(':')
 				if len(args) != 2:
 					continue
 				value = parseData(jsonData, args[0], args[1])
 				l.append(value)
-			print l		
+			print l
